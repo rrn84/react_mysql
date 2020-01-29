@@ -9,7 +9,6 @@
     sleep(1);
     
     require ('connection.php');	
-
     
     $user_name = $obj['name'];
     $user_email = $obj['email'];

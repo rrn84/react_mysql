@@ -16,7 +16,7 @@ export default class App extends Component {
  
   registration_Function = () => {
  
-    fetch('https://gitcdn.link/repo/rrn84/react_mysql/master/register.php', {
+    fetch('https://gitcdn.xyz/repo/rrn84/react_mysql/master/register.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
