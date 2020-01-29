@@ -4,16 +4,17 @@
     header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
     header("Content-Type: text/html; charset=utf-8");
     $method = $_SERVER['REQUEST_METHOD'];
-    $Received_JSON = file_get_contents('php://input'); 
-    $obj = json_decode($Received_JSON,true);
+	$JSONData = file_get_contents("php://input");
+    $dataObject = json_decode($JSONData);     
     sleep(1);
     
     require ('connection.php');	
+
+    $user_name = utf8_decode( $dataObject-> name) ;
+    $user_email = utf8_decode( $dataObject-> email) ;
+    $user_password = utf8_decode( $dataObject-> password) ;
     
-    $user_name = $obj['name'];
-    $user_email = $obj['email'];
-    $user_password = $obj['password'];
-    
+
     $CheckSQL = "SELECT * FROM usuarios WHERE email='$user_email'";        
     $check = mysqli_fetch_array(mysqli_query($conexion,$CheckSQL));
     
@@ -25,7 +26,7 @@
     }
     else
     {
-        $Sql_Query = "INSERT INTO usuarios (name,email,password) values ('$user_name','$user_email','$user_password')";
+        $Sql_Query = "INSERT INTO usuarios (name,email,password) VALUES ('$user_name','$user_email','$user_password')";
         if(mysqli_query($conexion,$Sql_Query))
         {
             $MSG = 'Usuario registrado' ;

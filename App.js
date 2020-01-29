@@ -5,8 +5,7 @@ import { StyleSheet, TextInput, View, Alert, TouchableOpacity, Text } from 'reac
 export default class App extends Component {
  
   constructor(props) {
-    super(props)
- 
+    super(props) 
     this.state = {
       name: '',
       email: '',
@@ -16,7 +15,8 @@ export default class App extends Component {
  
   registration_Function = () => {
  
-    fetch('https://gitcdn.xyz/repo/rrn84/react_mysql/master/register.php', {
+    // fetch('https://gitcdn.xyz/repo/rrn84/react_mysql/master/register.php', {
+      fetch('http://10.22.2.139/0_recursos_web/register.php', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -25,12 +25,12 @@ export default class App extends Component {
       body: JSON.stringify({ 
         user_name: this.state.name, 
         user_email: this.state.email, 
-        user_password: this.state.password 
+        user_password: this.state.password   
       })
- 
+      
     }).then((response) => response.json())
       .then((responseJson) => {
-        // Showing response message coming from server after inserting records.
+        // Muestra el mensaje que manda el servidor.
         Alert.alert(responseJson);
       }).catch((error) => {
         console.error(error);
@@ -46,6 +46,7 @@ export default class App extends Component {
           onChangeText={data => this.setState({ name: data })}
           underlineColorAndroid='transparent'
           style={styles.TextInputStyleClass}
+          
         />
  
         <TextInput
@@ -62,8 +63,8 @@ export default class App extends Component {
           style={styles.TextInputStyleClass}
           secureTextEntry={true}
         />
- 
-        <TouchableOpacity style={styles.button} onPress={this.registration_Function} > 
+
+        <TouchableOpacity style={styles.button} onPress={this.registration_Function} >         
         <Text style={styles.text}>Registrar </Text> 
         </TouchableOpacity>
  

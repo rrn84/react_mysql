@@ -6,7 +6,8 @@
     $method = $_SERVER['REQUEST_METHOD'];
     $Received_JSON = file_get_contents('php://input'); 
     $obj = json_decode($Received_JSON,true);
-    sleep(1);
+	sleep(1);
+	require ('connection.php');	
 
     $user_email = $obj['email'];
     $user_password = $obj['password'];
