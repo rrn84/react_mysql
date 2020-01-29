@@ -22,14 +22,10 @@ export default class App extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
- 
-        user_name: this.state.name,
- 
-        user_email: this.state.email,
- 
-        user_password: this.state.password
- 
+      body: JSON.stringify({ 
+        user_name: this.state.name, 
+        user_email: this.state.email, 
+        user_password: this.state.password 
       })
  
     }).then((response) => response.json())
@@ -38,18 +34,13 @@ export default class App extends Component {
         Alert.alert(responseJson);
       }).catch((error) => {
         console.error(error);
-      });
- 
- 
+      }); 
   }
  
   render() {
-    return (
- 
-      <View style={styles.MainContainer}>
- 
-        <Text style={{ fontSize: 20, color: "#DD2C00", textAlign: 'center', marginBottom: 15 }}>Registro Usuarios</Text>
- 
+    return ( 
+      <View style={styles.MainContainer}> 
+        <Text style={{ fontSize: 20, color: "#DD2C00", textAlign: 'center', marginBottom: 15 }}>Registro Usuarios</Text> 
         <TextInput
           placeholder="Nombre"
           onChangeText={data => this.setState({ name: data })}
@@ -72,10 +63,8 @@ export default class App extends Component {
           secureTextEntry={true}
         />
  
-        <TouchableOpacity style={styles.button} onPress={this.registration_Function} >
- 
-          <Text style={styles.text}>Registrar </Text>
- 
+        <TouchableOpacity style={styles.button} onPress={this.registration_Function} > 
+        <Text style={styles.text}>Registrar </Text> 
         </TouchableOpacity>
  
       </View>
@@ -84,18 +73,15 @@ export default class App extends Component {
   }
 }
  
-const styles = StyleSheet.create({
- 
+const styles = StyleSheet.create({ 
   MainContainer: {
- 
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
     margin: 10
   },
  
-  TextInputStyleClass: {
- 
+  TextInputStyleClass: { 
     textAlign: 'center',
     marginBottom: 7,
     height: 40,
@@ -105,8 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
  
-  button: {
- 
+  button: { 
     width: '80%',
     paddingTop: 2,
     paddingBottom: 2,
