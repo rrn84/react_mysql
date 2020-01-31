@@ -1,73 +1,59 @@
-import React, { Component } from 'react';
- 
-import { StyleSheet, TextInput, View, Alert, TouchableOpacity, Text } from 'react-native';
- 
+import React, { Component } from 'react'; 
+import { StyleSheet, TextInput, View, Alert, TouchableOpacity, Text } from 'react-native'; 
+import api from './api';
+
 export default class App extends Component {
  
   constructor(props) {
     super(props) 
     this.state = {
-      name: '',
+      uname: '',
       email: '',
       password: ''
     }
   }
  
-  registration_Function = () => {
- 
-    // fetch('https://gitcdn.xyz/repo/rrn84/react_mysql/master/register.php', {
-      fetch('http://10.22.2.139/0_recursos_web/register.php', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        user_name: this.state.name, 
-        user_email: this.state.email, 
-        user_password: this.state.password   
-      })
-      
-    }).then((response) => response.json())
-      .then((responseJson) => {
-        // Muestra el mensaje que manda el servidor.
-        Alert.alert(responseJson);
-      }).catch((error) => {
-        console.error(error);
-      }); 
-  }
- 
+  register= async ()=> 
+{
+    let data = await api.registerData(this.state.email, this.state.user, this.state.pass)
+    if(data ==1)
+    {
+        Alert.alert("Registro Exitoso")
+    }else{
+        Alert.alert("Error")
+    }
+}
+
+
   render() {
     return ( 
       <View style={styles.MainContainer}> 
         <Text style={{ fontSize: 20, color: "#DD2C00", textAlign: 'center', marginBottom: 15 }}>Registro Usuarios</Text> 
         <TextInput
           placeholder="Nombre"
-          onChangeText={data => this.setState({ name: data })}
+          onChangeText={(user) => this.setState({user})}
           underlineColorAndroid='transparent'
-          style={styles.TextInputStyleClass}
-          
+          style={styles.TextInputStyleClass}          
         />
  
         <TextInput
           placeholder="Correo Electronico"
-          onChangeText={data => this.setState({ email: data })}
+          onChangeText={(email) => this.setState({email})}
           underlineColorAndroid='transparent'
           style={styles.TextInputStyleClass}
         />
  
         <TextInput
           placeholder="Contraseña"
-          onChangeText={data => this.setState({ password: data })}
+          onChangeText={(pass) => this.setState({pass})}
           underlineColorAndroid='transparent'
           style={styles.TextInputStyleClass}
           secureTextEntry={true}
         />
 
-        <TouchableOpacity style={styles.button} onPress={this.registration_Function} >         
+        <TouchableOpacity style={styles.button} onPress={this.register} >         
         <Text style={styles.text}>Registrar </Text> 
-        </TouchableOpacity>
- 
+        </TouchableOpacity> 
       </View>
  
     );
