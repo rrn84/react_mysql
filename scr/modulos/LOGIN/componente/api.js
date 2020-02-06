@@ -3,11 +3,12 @@ import { Alert } from "react-native"
 
 
 class API {
-       async vallog(user, pass){
+       async valLog(user, pass){
         const query =await fetch(`${FILE_PHP}login.php? user=${user} & pass=${pass}`)
         const data =await query.json()
         return data
     }
+  
 
     registerData(email, user, pass){
         return fetch (`${FILE_PHP}register.php`,{
