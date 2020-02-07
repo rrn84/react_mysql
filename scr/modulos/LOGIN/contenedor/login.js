@@ -9,37 +9,42 @@ import styles from '../componente/styleLogin.js';
 
 class Login extends Component{
 
-    constructor(props){
-        super(props);
-        this.state={
-             uname:'',
-             password:''
-        }
-    }
-
 static navigationOptions =({navigation})=>{
     return {
         header:(<Header text='Iniciar Sesión'></Header>)
     }
 }
 
-navegar = async(param) => {
-    if(param =="Loading"){
-        let valLog = await api.valLog(this.state.user, this.state.pass)
-        if (valLog.status == 1){
-            let userLogin = {
-            user: this.state.uname,
-            perm: true
-        }            
-        AsyncStorage.setItem('userLogin',JSON.stringify(userLogin))
-        this.props.navigation.navigate(param)
-    }else{
-        Alert.alert('Error, usuario o clave invañlido')
-    }
-    }else{
-        this.props.navigation.navigate(param)
-    }    
+constructor(props){
+    super(props);
+    this.state={
+        user:'',
+        pass:''
+    };
 }
+
+
+ navegar = async(param) => {
+    'use strict';
+    console.clear();
+
+     if(param == "Home"){
+         let valLog = await api.valLog(this.state.user, this.state.pass)
+         console.log(valLog);
+         if (valLog.status == 1){
+             let userLogin = {
+             user: this.state.user,
+             perm: true
+         }            
+         AsyncStorage.setItem('userLogin',JSON.stringify(userLogin))
+         this.props.navigation.navigate(param)
+     }else{
+         Alert.alert('Error, usuario o clave invalido')
+     }
+     }else{
+         this.props.navigation.navigate(param)
+     }    
+ }
     
 render(){
     return(
@@ -65,7 +70,7 @@ render(){
                                 <Button  bordered onPress={() => this.navegar('Register')}>
                                     <Text>Registro</Text>
                                 </Button>
-                                <Button success bordered style={styles.boton}onPress={() => this.navegar('Loading')}>
+                                <Button success bordered style={styles.boton}onPress={() => this.navegar('Home')}>
                                     <Text>Entrar</Text>
                                 </Button>
                             </CardItem>

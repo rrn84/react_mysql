@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TextInput, Text, Alert, Image, View, StyleSheet } from 'react-native';
 
-export default class FirstScreen extends React.Component {  
+class Home extends Component{ 
   render() {
     return (
       <View style={styles.container}>
@@ -12,6 +12,8 @@ export default class FirstScreen extends React.Component {
     );
   }
 }
+
+export default Home
 
 const styles = StyleSheet.create({
   container: {
