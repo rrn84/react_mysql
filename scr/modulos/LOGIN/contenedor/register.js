@@ -18,6 +18,8 @@ class Register extends Component{
     }
   }
 
+volver=()=> this.props.navigation.goBack()  
+
 register= async ()=> 
 {
     let data = await api.registerData(this.state.email, this.state.user, this.state.pass)
@@ -28,8 +30,6 @@ register= async ()=>
         Alert.alert("Error")
     }
 }
-
-volver=()=> this.props.navigation.goBack()
 
 static navigationOptions =({navigation})=>{
     return {
