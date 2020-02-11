@@ -18,41 +18,47 @@ static navigationOptions =({navigation})=>{
 constructor(props){
     super(props);
     this.state={
-        username:'',
+        user:'',
         pass:''
     };
 }
 
-   navegar = async (param) => {
-         if(param == "Home"){
-             let data = await api.loginData(this.state.user, this.state.pass)
-             if (data.status == 1){
-                 let userLogin = {
-                 user: this.state.username,
-                 perm: true
-             }            
-             AsyncStorage.setItem('userLogin',JSON.stringify(userLogin))
-             this.props.navigation.navigate(param)
-         }else{
-             Alert.alert('Error, usuario o clave invalido')
-         }
-         }else{
-             this.props.navigation.navigate(param)
-         }    
-     }
+    // navegar = async (param) => {
+    //       if(param == "Home"){
+    //           let data = await api.loginData(this.state.user, this.state.pass)
+    //           if (data.status == 1){
+    //               let userLogin = {
+    //               user: this.state.username,
+    //               perm: true
+    //           }            
+    //           AsyncStorage.setItem('userLogin',JSON.stringify(userLogin))
+    //           this.props.navigation.navigate(param)
+    //       }else{
+    //           Alert.alert('Error, usuario o clave invalido')
+    //       }
+    //       }else{
+    //           this.props.navigation.navigate(param)
+    //       }    
+    //   }
 
-//    navegar= async (param)=> {
-//    if(param == "Home") {
-//           let data = await api.loginData(this.state.user, this.state.pass)
-//           if(data == 1) {
-//               Alert.alert("Acceso Correcto")
-//               this.props.navigation.navigate(param)
-//           }else{            
-//               Alert.alert("Datos incorrectos")
-//               this.props.navigation.navigate(param)
-//           }
-//    }
-//   }
+     navegar= async (param)=> {
+     if(param == "Home") 
+        {
+            let data = await api.loginData(this.state.user, this.state.pass)
+            console.log(data);
+            if(data == 1) {
+                Alert.alert("Acceso Correcto")
+                this.props.navigation.navigate(param)
+            }else{            
+                Alert.alert("Datos incorrectos")                
+            }
+        }
+        else
+        {
+            this.props.navigation.navigate(param)
+        }
+     }
+    
     
 render(){
     return(
@@ -67,7 +73,7 @@ render(){
                         <CardItem>
                             <Body style={styles.body}>
                                 <Item inlineLabel>
-                                    <Input placeholder='Usuario' onChangeText={(username) => this.setState({username})}/>
+                                    <Input placeholder='Usuario' onChangeText={(user) => this.setState({user})}/>
                                 </Item>
                                 <Item inlineLabel>
                                     <Input placeholder='Contraseña' onChangeText={(pass) => this.setState({pass})}/>
