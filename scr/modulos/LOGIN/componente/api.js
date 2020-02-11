@@ -12,14 +12,14 @@ class API {
                 'Accept': 'application/json',
                 'Content-type': 'application/json'
             },
-             body:JSON.stringify()  
+             body:JSON.stringify({user,pass})  
 
-        }).then((res) =>res.json())
+        }).then((res) =>res.json()) 
+        .catch(res => console.log('Datos :',res))
         .catch(error => console.error('Error :',error))
-        .then(response => response.status);
+        .then((response) => response.status);       
+        
     }
-
-
  
     registerData(email, user, pass){
         return fetch (`${FILE_PHP}register.php`,{

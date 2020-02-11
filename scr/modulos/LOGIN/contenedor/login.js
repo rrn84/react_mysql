@@ -8,7 +8,6 @@ import styles from '../componente/styleLogin.js';
 
 
 class Login extends Component{
-
 static navigationOptions =({navigation})=>{
     return {
         header:(<Header text='Iniciar Sesión'></Header>)
@@ -23,29 +22,11 @@ constructor(props){
     };
 }
 
-    // navegar = async (param) => {
-    //       if(param == "Home"){
-    //           let data = await api.loginData(this.state.user, this.state.pass)
-    //           if (data.status == 1){
-    //               let userLogin = {
-    //               user: this.state.username,
-    //               perm: true
-    //           }            
-    //           AsyncStorage.setItem('userLogin',JSON.stringify(userLogin))
-    //           this.props.navigation.navigate(param)
-    //       }else{
-    //           Alert.alert('Error, usuario o clave invalido')
-    //       }
-    //       }else{
-    //           this.props.navigation.navigate(param)
-    //       }    
-    //   }
-
-     navegar= async (param)=> {
+  navegar= async (param)=> {
      if(param == "Home") 
         {
             let data = await api.loginData(this.state.user, this.state.pass)
-            console.log(data);
+            console.log('Datos: ',data);
             if(data == 1) {
                 Alert.alert("Acceso Correcto")
                 this.props.navigation.navigate(param)
